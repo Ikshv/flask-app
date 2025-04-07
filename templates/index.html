@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Downloader</title>
+    <!-- Tailwind CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Container -->
+    <div class="max-w-4xl mx-auto p-6">
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-4">Local App Downloader</h1>
+        
+        <!-- Introduction Text -->
+        <p class="text-lg text-center mb-8">Click on the apps below to download them:</p>
+
+        <!-- Upload Section -->
+        <div class="mb-8 text-center">
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" class="block mx-auto mb-4 text-lg border border-gray-300 p-2 rounded-md">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Upload File</button>
+            </form>
+        </div>
+
+        <!-- App List -->
+        <ul class="space-y-4">
+            {% for file in files %}
+                <li class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="{{ url_for('download', filename=file) }}" class="text-xl text-blue-500 hover:text-blue-700 font-medium">{{ file }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
